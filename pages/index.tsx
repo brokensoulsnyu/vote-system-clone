@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import Card from "@/app/components/VoteCard";
 import { voteOptions } from "@/VoteeData"; // Import your scraped data
+import Image from "next/image";
+// import background from "@/public/Images/bgimg.jpg"
+import logo from "@/public/Images/thebest.jpg"
 import "@/app/assets/Styles/Card.css";
 import "@/app/assets/Styles/Navbar.css";
 
@@ -155,6 +158,7 @@ export default function VotingPage() {
       </nav>
 
       <h1 className="heading">Anonymous Voting System</h1>
+      <Image className="logo" src={logo} alt={""} width={800} height={400} />
 
       {currentPage === "vote" ? <VoteContent /> : <ResultsContent />}
     </div>
