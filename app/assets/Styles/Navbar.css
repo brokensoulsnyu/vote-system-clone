@@ -1,0 +1,29 @@
+Navbar Styles
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+}
+
+.nav-link {
+  padding: 0.5rem 1rem;
+  margin: 0 0.5rem;
+  border: none;
+  background: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #0056b3;
+}
+
+.nav-link.active {
+  color: #0056b3;
+  border-bottom: 2px solid #0056b3;
+}

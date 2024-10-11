@@ -16,12 +16,134 @@
 
 body {
   color: var(--foreground);
-  background: var(--background);
+  /* background: url("background.jpg"); */
   font-family: Arial, Helvetica, sans-serif;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+}
+
+.container {
+  max-width: 1600px; /* Enough to comfortably fit 5 cards plus gaps */
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+  overflow-x: hidden;
+}
+
+.heading {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.message {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.message.error {
+  color: #ef4444;
+}
+
+.message.cooldown {
+  color: #3b82f6;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 2rem 0;
+}
+
+.pagination-button {
+  padding: 0.5rem 1rem;
+  background-color: #e5e7eb;
+  border-radius: 0.25rem;
+}
+
+.pagination-button:disabled {
+  background-color: #f3f4f6;
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.pagination-info {
+  padding: 0.5rem 1rem;
+}
+
+.results-section {
+  max-width: 42rem;
+  margin: 0 auto;
+}
+
+.results-section h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.results-grid {
+  display: grid;
+  gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .results-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.result-card {
+  background-color: white;
+  padding: 0.75rem;
+  border-radius: 0.25rem;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+}
+
+.result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+
+.result-header span {
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.progress-bar-bg {
+  width: 100%;
+  background-color: #e5e7eb;
+  border-radius: 9999px;
+  height: 0.625rem;
+}
+
+.progress-bar {
+  background-color: #3b82f6;
+  height: 0.625rem;
+  border-radius: 9999px;
+}
+
+.total-votes {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-top: 0.5rem;
+  text-align: center;
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 1024px) {
+  .heading {
+    font-size: 1.875rem;
+  }
+
+  .results-section h2 {
+    font-size: 1.5rem;
   }
 }
