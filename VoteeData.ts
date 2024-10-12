@@ -399,7 +399,7 @@ export const voteOptions: VoteOption[] = [
   },
   {
     imageSrc: "Abdrahman Haredy.jpg",
-    name: "Abdelrahman Elaraby",
+    name: "Abdelrahman Haredy",
     description: "سباح مصري",
     youtubeLink: "",
     facebookLink:
