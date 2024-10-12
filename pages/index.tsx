@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Card from "@/app/components/VoteCard";
+import AdvertCard from "@/app/components/AdvertCard"; // Import AdvertCard
 import { voteOptions } from "@/VoteeData"; // Import your scraped data
 import Image from "next/image";
 import logo from "@/public/Images/thebest.png";
@@ -200,6 +201,7 @@ export default function VotingPage() {
           height={300}
           priority
         />
+        <AdvertCard />
       </div>
 
       {currentPage === "vote" ? <VoteContent /> : <ResultsContent />}

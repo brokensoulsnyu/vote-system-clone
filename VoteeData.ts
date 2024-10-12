@@ -234,8 +234,8 @@ export const voteOptions: VoteOption[] = [
       facebookLink: "https://www.instagram.com/ahmed_saudi77?igsh=bmJrNWcwMjN1bHFp"
     },
     {
-      imageSrc: "Tarek shawki.jpg",
-      name: "Tarek shawki",
+      imageSrc: "Tarek Shawky.jpg",
+      name: "Tarek Shawki",
       description: "وزير التربية والتعليم سابقا",
       youtubeLink: "",
       facebookLink: "https://www.facebook.com/tshawki?mibextid=ZbWKwL"
@@ -270,7 +270,7 @@ export const voteOptions: VoteOption[] = [
     },
     {
       imageSrc: "Ashraf Mahdy.jpg",
-      name: "Ashraf Mahdy",
+      name: "Sherif Mahdy",
       description: "مخرج",
       youtubeLink: "",
       facebookLink: "https://www.instagram.com/ashrafmahdy_/"
@@ -340,7 +340,7 @@ export const voteOptions: VoteOption[] = [
     },
     {
       imageSrc: "Noor Harazeen.jpeg",
-      name: "Khaled Sakr",
+      name: "Noor Harazeen",
       description: "بلوجر",
       youtubeLink: "",
       facebookLink: "https://www.instagram.com/noor.harazeen/"
