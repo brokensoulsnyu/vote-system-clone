@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 import Card from "@/app/components/VoteCard";
 import { voteOptions } from "@/VoteeData"; // Import your scraped data
 import Image from "next/image";
-// import background from "@/public/Images/bgimg.jpg"
-import logo from "@/public/Images/thebest.jpg"
+import logo from "@/public/Images/thebest.png";
 import "@/app/assets/Styles/Card.css";
 import "@/app/assets/Styles/Navbar.css";
+import "@/app/assets/Styles/background-styles.css";
 
 interface VoteResult {
   option: string;
@@ -75,7 +75,7 @@ export default function VotingPage() {
 
     return (
       <div className="results-section">
-        <h2>Voting Results</h2>
+        {/* <h2>Voting Results</h2> */}
         {isLoading ? (
           <p>Loading results...</p>
         ) : error ? (
@@ -121,7 +121,7 @@ export default function VotingPage() {
       )}
       {cooldownMinutes !== null && (
         <p className="message cooldown">
-          You can vote again in approximately {cooldownMinutes} minutes.
+          You can vote again in approximately {cooldownMinutes / 60} hrs.
         </p>
       )}
       <div className="card-grid">
@@ -140,8 +140,40 @@ export default function VotingPage() {
     </>
   );
 
+  useEffect(() => {
+    const updateLineRotations = () => {
+      const lines = document.querySelectorAll(".background-line");
+      lines.forEach((line) => {
+        // Assert that the line is an HTMLElement
+        const htmlLine = line as HTMLElement;
+        const startRotation = Math.random() * 360;
+        const endRotation = startRotation + Math.random() * 180 - 90; // Random rotation ±90 degrees
+        htmlLine.style.setProperty("--start-rotation", `${startRotation}deg`);
+        htmlLine.style.setProperty("--end-rotation", `${endRotation}deg`);
+      });
+    };
+
+    // Initial rotation update
+    updateLineRotations();
+
+    // Set up an interval to update rotations
+    const intervalId = setInterval(updateLineRotations, 15000); // Update every 15 seconds
+
+    // Clean up the interval on component unmount
+    return () => clearInterval(intervalId);
+  }, []);
+
   return (
     <div className="container">
+      <div className="background-container">
+        {[...Array(20)].map((_, index) => (
+          <div
+            key={index}
+            className={`background-line background-line-${index + 1}`}
+          />
+        ))}
+      </div>
+
       <nav className="navbar">
         <button
           className={`nav-link ${currentPage === "vote" ? "active" : ""}`}
@@ -157,8 +189,18 @@ export default function VotingPage() {
         </button>
       </nav>
 
-      <h1 className="heading">Anonymous Voting System</h1>
-      <Image className="logo" src={logo} alt={""} width={800} height={400} />
+      {/* <h1 className="heading">Anonymous Voting System</h1> */}
+      <div className="logo-container">
+        <Image
+          className="logo"
+          src={logo}
+          alt="Logo"
+          // layout="responsive"
+          width={300}
+          height={300}
+          priority
+        />
+      </div>
 
       {currentPage === "vote" ? <VoteContent /> : <ResultsContent />}
     </div>

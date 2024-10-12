@@ -27,3 +27,30 @@ Navbar Styles
   color: #0056b3;
   border-bottom: 2px solid #0056b3;
 }
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 2rem 0;
+}
+
+.logo {
+  width: 50vw; /* Start with 50% of the viewport width */
+  max-width: 300px; /* Maximum size */
+  height: auto; /* Maintain aspect ratio */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .logo {
+    width: 70vw; /* Increase to 70% of viewport width on smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    width: 90vw; /* Further increase to 90% of viewport width on very small screens */
+  }
+}

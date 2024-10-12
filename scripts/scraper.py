@@ -67,7 +67,7 @@ def parse_html(html_content: str) -> List[VoteOption]:
     return vote_options
 
 def generate_ts_file(vote_options: List[VoteOption], output_file: str):
-    ts_content = """// VoteeData.ts
+    ts_content = """// VotesData.ts
 
 export interface VoteOption {
     imageSrc: string;
@@ -97,8 +97,8 @@ def main():
         vote_options = parse_html(html_content)
         
         # Generate TypeScript file
-        generate_ts_file(vote_options, 'VoteeData.ts')
-        print("Successfully generated VoteeData.ts")
+        generate_ts_file(vote_options, 'VotesData.ts')
+        print("Successfully generated VotesData.ts")
         
     except FileNotFoundError:
         print("Error: Could not find the HTML file. Make sure 'Scrapable.html' exists in the current directory.")

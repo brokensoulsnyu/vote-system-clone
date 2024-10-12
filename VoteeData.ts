@@ -316,5 +316,40 @@ export const voteOptions: VoteOption[] = [
       description: "بلوجر",
       youtubeLink: "",
       facebookLink: "https://www.facebook.com/Yahiaelgazaar/photos"
-    }
+    },
+    {
+      imageSrc: "Magdy elcomando.jpg",
+      name: "Magdy elcomando",
+      description: "بلوجر",
+      youtubeLink: "",
+      facebookLink: "https://www.tiktok.com/@magdy_elcomando"
+    },
+    {
+      imageSrc: "Mohamed Nasser.jpeg",
+      name: "Mohamed Nasser",
+      description: "مدرس جغرفيا",
+      youtubeLink: "https://www.youtube.com/channel/UC21FQlpKPnub-vbUf3YbH2Q",
+      facebookLink: "https://www.facebook.com/Mrmohamednasser1/?locale=ar_AR"
+    },
+    {
+      imageSrc: "Khaled Sakr.jpg",
+      name: "Khaled Sakr",
+      description: "مدرس كيمياء",
+      youtubeLink: "https://www.youtube.com/channel/UClvucpj2qZ3OUM2not9YVpA?app=desktop",
+      facebookLink: "https://www.facebook.com/p/Mr-Khaled-Sakr-100064076050923/?locale=ar_AR"
+    },
+    {
+      imageSrc: "Noor Harazeen.jpeg",
+      name: "Khaled Sakr",
+      description: "بلوجر",
+      youtubeLink: "",
+      facebookLink: "https://www.instagram.com/noor.harazeen/"
+    },
+    {
+      imageSrc: "Islam Mohamed.jpg",
+      name: "Islam Mohamed",
+      description: "بلوجر",
+      youtubeLink: "",
+      facebookLink: "https://www.facebook.com/dr.islammohamed.md/?locale=ar_AR"
+    },
 ];
