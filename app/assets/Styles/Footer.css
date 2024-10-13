@@ -1,0 +1,33 @@
+.w-f {
+  width: 100%;
+}
+
+.w-sub-1 {
+  width: 100%;
+  background-color: #374151; /* Tailwind's gray-700 */
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .w-sub-1 {
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.w-sub-2 {
+  margin-top: 1rem;
+  > :not([hidden]) ~ :not([hidden]) {
+    margin-left: 1.5rem;
+  }
+}
+
+@media (min-width: 640px) {
+  .w-sub-2 {
+    margin-top: 0;
+    justify-content: center;
+  }
+}
