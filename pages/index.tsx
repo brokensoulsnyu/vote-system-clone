@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { Footer } from "flowbite-react";
-import { BsLinkedin , BsGithub } from "react-icons/bs";
+// import { Footer } from "flowbite-react";
+// import { BsLinkedin , BsGithub } from "react-icons/bs";
 import Card from "@/app/components/VoteCard";
 import AdvertCard from "@/app/components/AdvertCard"; // Import AdvertCard
 import { voteOptions } from "@/VoteeData"; // Import your scraped data
@@ -123,11 +123,11 @@ export default function VotingPage() {
           {message}
         </p>
       )}
-      {cooldownMinutes !== null && (
+      {/* {cooldownMinutes !== null && (
         <p className="message cooldown">
           You can vote again in approximately {cooldownMinutes / 60} hrs.
         </p>
-      )}
+      )} */}
       <div className="card-grid">
         {voteOptions.map((option, index) => (
           <Card
@@ -208,7 +208,7 @@ export default function VotingPage() {
       </div>
 
       {currentPage === "vote" ? <VoteContent /> : <ResultsContent />}
-      <Footer bgDark>
+      {/* <Footer bgDark>
         <div className="w-f">
           <div className="w-sub-1">
             <Footer.Copyright href="#" by="Flowbite™" year={2022} />
@@ -218,7 +218,7 @@ export default function VotingPage() {
             </div>
           </div>
         </div>
-      </Footer>
+      </Footer> */}
     </div>
   );
 }

@@ -320,7 +320,7 @@ export const voteOptions: VoteOption[] = [
     name: "Yahia elgazar",
     description: "بلوجر",
     youtubeLink: "",
-    facebookLink: "https://www.facebook.com/Yahiaelgazaar/photos",
+    facebookLink: "https://www.facebook.com/yahia.elgazar99?mibextid=ZbWKwL",
   },
   {
     imageSrc: "Magdy elcomando.jpg",
@@ -408,7 +408,7 @@ export const voteOptions: VoteOption[] = [
   {
     imageSrc: "Maram Mohamed.jpg",
     name: "Maram Mohamed",
-    description: "بلوجر",
+    description: "مؤثرة فى مجال الرياضات الالكترونيه",
     youtubeLink: "",
     facebookLink: "",
   },
