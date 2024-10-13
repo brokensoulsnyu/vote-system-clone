@@ -27,6 +27,22 @@ export default function VotingPage() {
   const [error, setError] = useState<string | null>(null);
   const [cooldownMinutes, setCooldownMinutes] = useState<number | null>(null);
   const [currentPage, setCurrentPage] = useState<Page>("vote");
+  const [hasVoted, setHasVoted] = useState(false); // Track if user has voted
+  const [isCheckingVote, setIsCheckingVote] = useState(true); // Track if we are checking vote status
+
+  useEffect(() => {
+    const checkIfVoted = async () => {
+      try {
+        const response = await fetch("/api/check-vote"); // You'll need to create this API endpoint
+        const data = await response.json();
+        setHasVoted(data.hasVoted); // If true, user has already voted
+      } catch (err) {
+        console.error("Error checking vote status:", err);
+      }
+    };
+
+    checkIfVoted();
+  }, []);
 
   useEffect(() => {
     fetchResults();
@@ -66,7 +82,7 @@ export default function VotingPage() {
       setError("Error loading results. Please try again later.");
       console.error("Error fetching results:", err);
     } finally {
-      setIsLoading(false);
+      setIsCheckingVote(false); // Mark checking complete
     }
   };
 
@@ -147,24 +163,25 @@ export default function VotingPage() {
           {message}
         </p>
       )}
-      {/* {cooldownMinutes !== null && (
-        <p className="message cooldown">
-          You can vote again in approximately {cooldownMinutes / 60} hrs.
-        </p>
-      )} */}
-      <div className="card-grid">
-        {voteOptions.map((option, index) => (
-          <Card
-            key={index}
-            imageSrc={`Images/${option.imageSrc}`} // Updated image path
-            name={option.name}
-            description={option.description}
-            youtubeLink={option.youtubeLink}
-            facebookLink={option.facebookLink}
-            onClick={() => handleVote(option.name)}
-          />
-        ))}
-      </div>
+      {isCheckingVote ? (
+        <p>Checking your voting status...</p> // Indicate that we are checking
+      ) : hasVoted ? (
+        <p className="thanks-message">You have already voted. Thanks for participating! 🎉</p>
+      ) : (
+        <div className="card-grid">
+          {voteOptions.map((option, index) => (
+            <Card
+              key={index}
+              imageSrc={`Images/${option.imageSrc}`}
+              name={option.name}
+              description={option.description}
+              youtubeLink={option.youtubeLink}
+              facebookLink={option.facebookLink}
+              onClick={() => handleVote(option.name)}
+            />
+          ))}
+        </div>
+      )}
     </>
   );
 
