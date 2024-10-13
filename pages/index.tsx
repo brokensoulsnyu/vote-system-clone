@@ -254,34 +254,13 @@ export default function VotingPage() {
           <div className="footer-bottom-social-icons">
             <ul id="footer-social-links">
               <li>
-                <a
-                  href="https://www.youtube.com/channel/UC3dDgmi3FuwLz02EU3dZVag"
-                  target="_blank"
-                >
-                  YouTube
-                </a>
-              </li>{" "}
-              |
-              <li>
-                <a href="#" target="_blank">
+                <a href="https://github.com/Madiocre" target="_blank">
                   GitHub
                 </a>
               </li>{" "}
               |
               <li>
-                <a href="https://www.facebook.com/whollycoder/" target="_blank">
-                  Facebook
-                </a>
-              </li>{" "}
-              |
-              <li>
-                <a href="#" target="_blank">
-                  Twitter
-                </a>
-              </li>{" "}
-              |
-              <li>
-                <a href="#" target="_blank">
+                <a href="https://www.linkedin.com/in/ahmed-shalaby-31a03a235/" target="_blank">
                   LinkedIn
                 </a>
               </li>
@@ -289,7 +268,7 @@ export default function VotingPage() {
             <div className="footer-bottom-site-credit">
               Powered By:{" "}
               <span id="site-credit">
-                <a href="" target="_blank">
+                <a href="https://github.com/Madiocre" target="_blank">
                   Madiocre (Ahmed Shalaby)
                 </a>
               </span>
