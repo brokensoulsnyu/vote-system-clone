@@ -107,6 +107,7 @@ export default function VotingPage() {
         if (data.cooldownRemaining) {
           setCooldownMinutes(data.cooldownRemaining);
         }
+        setHasVoted(true)
       }
     } catch (error) {
       setMessage("Error casting vote. Please try again.");
