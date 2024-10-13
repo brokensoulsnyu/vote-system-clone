@@ -101,6 +101,7 @@ export default function VotingPage() {
         setMessage(data.message);
         setCooldownMinutes(null);
         await fetchResults(); // Refresh results after voting
+        setHasVoted(true)
       } else {
         setMessage(data.message);
         if (data.cooldownRemaining) {
