@@ -17,6 +17,8 @@ interface VoteResult {
 }
 
 type Page = "vote" | "results";
+const CACHE_KEY = "votingResults";
+const CACHE_TTL = 15 * 60 * 1000; // 15 minutes in milliseconds
 
 export default function VotingPage() {
   const [results, setResults] = useState<VoteResult[]>([]);
@@ -34,10 +36,32 @@ export default function VotingPage() {
     try {
       setIsLoading(true);
       setError(null);
+
+      // Check for cached results
+      const cachedData = localStorage.getItem(CACHE_KEY);
+      if (cachedData) {
+        const { data, timestamp } = JSON.parse(cachedData);
+        if (Date.now() - timestamp < CACHE_TTL) {
+          setResults(data);
+          setIsLoading(false);
+          return;
+        }
+      }
+
+      // Fetch new results if cache is invalid or doesn't exist
       const response = await fetch("/api/results");
       if (!response.ok) throw new Error("Failed to fetch results");
       const data = await response.json();
       setResults(data);
+
+      // Update cache
+      localStorage.setItem(
+        CACHE_KEY,
+        JSON.stringify({
+          data,
+          timestamp: Date.now(),
+        })
+      );
     } catch (err) {
       setError("Error loading results. Please try again later.");
       console.error("Error fetching results:", err);
@@ -60,7 +84,7 @@ export default function VotingPage() {
       if (response.ok) {
         setMessage(data.message);
         setCooldownMinutes(null);
-        await fetchResults();
+        await fetchResults(); // Refresh results after voting
       } else {
         setMessage(data.message);
         if (data.cooldownRemaining) {
@@ -208,17 +232,54 @@ export default function VotingPage() {
       </div>
 
       {currentPage === "vote" ? <VoteContent /> : <ResultsContent />}
-      {/* <Footer bgDark>
-        <div className="w-f">
-          <div className="w-sub-1">
-            <Footer.Copyright href="#" by="Flowbite™" year={2022} />
-            <div className="w-sub-2">
-              <Footer.Icon href="#" icon={BsGithub} />
-              <Footer.Icon href="#" icon={BsLinkedin} />
+      <footer>
+        <div className="footer-bottom">
+          <div className="footer-bottom-social-icons">
+            <ul id="footer-social-links">
+              <li>
+                <a
+                  href="https://www.youtube.com/channel/UC3dDgmi3FuwLz02EU3dZVag"
+                  target="_blank"
+                >
+                  YouTube
+                </a>
+              </li>{" "}
+              |
+              <li>
+                <a href="#" target="_blank">
+                  GitHub
+                </a>
+              </li>{" "}
+              |
+              <li>
+                <a href="https://www.facebook.com/whollycoder/" target="_blank">
+                  Facebook
+                </a>
+              </li>{" "}
+              |
+              <li>
+                <a href="#" target="_blank">
+                  Twitter
+                </a>
+              </li>{" "}
+              |
+              <li>
+                <a href="#" target="_blank">
+                  LinkedIn
+                </a>
+              </li>
+            </ul>
+            <div className="footer-bottom-site-credit">
+              Powered By:{" "}
+              <span id="site-credit">
+                <a href="" target="_blank">
+                  Madiocre (Ahmed Shalaby)
+                </a>
+              </span>
             </div>
           </div>
         </div>
-      </Footer> */}
+      </footer>
     </div>
   );
 }
