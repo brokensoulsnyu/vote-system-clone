@@ -174,7 +174,7 @@ export default function VotingPage() {
           {voteOptions.map((option, index) => (
             <Card
               key={index}
-              imageSrc={`Images/${option.imageSrc}`}
+              imageSrc={`https://raw.githubusercontent.com/Madiocre/vote-images/main/${option.imageSrc}`}
               name={option.name}
               description={option.description}
               youtubeLink={option.youtubeLink}
