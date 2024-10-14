@@ -5,7 +5,7 @@ import Card from "@/app/components/VoteCard";
 import AdvertCard from "@/app/components/AdvertCard"; // Import AdvertCard
 import { voteOptions } from "@/VoteeData"; // Import your scraped data
 import Image from "next/image";
-import logo from "@/public/Images/thebest.png";
+// import logo from "@/public/Images/thebest.png";
 import "@/app/assets/Styles/Card.css";
 import "@/app/assets/Styles/Navbar.css";
 import "@/app/assets/Styles/background-styles.css";
@@ -240,7 +240,7 @@ export default function VotingPage() {
       <div className="logo-container">
         <Image
           className="logo"
-          src={logo}
+          src="https://raw.githubusercontent.com/Madiocre/vote-images/main/thebest.png"
           alt="Logo"
           // layout="responsive"
           width={300}
