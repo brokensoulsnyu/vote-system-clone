@@ -202,9 +202,9 @@ export default function VotingPage() {
     <>
       {message && (
         <p
-{/*           className={`message ${
-            cooldownMinutes !== null ? "cooldown" : "error"
-          }`} */}
+          // className={`message ${
+          // cooldownMinutes !== null ? "cooldown" : "error"
+          // }`}
         >
           {message}
         </p>
