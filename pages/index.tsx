@@ -74,6 +74,19 @@ export default function VotingPage() {
     }
   };
 
+  const updateLocalCache = (
+    hasVoted: boolean,
+    updatedResults: VoteResult[]
+  ) => {
+    const cachedData = localStorage.getItem(CACHE_KEY);
+    if (cachedData) {
+      const parsedData = JSON.parse(cachedData);
+      parsedData.data.results = updatedResults;
+      parsedData.data.hasVoted = hasVoted;
+      localStorage.setItem(CACHE_KEY, JSON.stringify(parsedData));
+    }
+  };
+
   const handleVote = async (optionName: string) => {
     try {
       setMessage("");
@@ -92,18 +105,20 @@ export default function VotingPage() {
         setHasVoted(true);
 
         // Update local cache
-        const cachedData = localStorage.getItem(CACHE_KEY);
-        if (cachedData) {
-          const parsedData = JSON.parse(cachedData);
-          parsedData.data.results = data.updatedResults;
-          parsedData.data.hasVoted = true;
-          localStorage.setItem(CACHE_KEY, JSON.stringify(parsedData));
-        }
+        updateLocalCache(true, data.updatedResults);
       } else {
         setHasVoted(true);
         setMessage(data.message);
         if (data.cooldownRemaining) {
           setCooldownMinutes(data.cooldownRemaining);
+        }
+        // Even if the vote failed due to previous vote, update local cache
+        if (
+          data.message.includes(
+            "A vote has already been cast from this location recently"
+          )
+        ) {
+          updateLocalCache(true, results);
         }
       }
     } catch (error) {
