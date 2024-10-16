@@ -25,7 +25,7 @@ export default function VotingPage() {
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [cooldownMinutes, setCooldownMinutes] = useState<number | null>(null);
+  // const [cooldownMinutes, setCooldownMinutes] = useState<number | null>(null);
   const [currentPage, setCurrentPage] = useState<Page>("vote");
   const [hasVoted, setHasVoted] = useState(false); // Track if user has voted
   // const [isCheckingVote, setIsCheckingVote] = useState(true); // Track if we are checking vote status
@@ -202,9 +202,9 @@ export default function VotingPage() {
     <>
       {message && (
         <p
-          className={`message ${
+{/*           className={`message ${
             cooldownMinutes !== null ? "cooldown" : "error"
-          }`}
+          }`} */}
         >
           {message}
         </p>
