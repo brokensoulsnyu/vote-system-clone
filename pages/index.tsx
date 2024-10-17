@@ -25,7 +25,7 @@ export default function VotingPage() {
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [cooldownMinutes, setCooldownMinutes] = useState<number | null>(null);
+  // const [cooldownMinutes, setCooldownMinutes] = useState<number | null>(null);
   const [currentPage, setCurrentPage] = useState<Page>("vote");
   const [hasVoted, setHasVoted] = useState(false); // Track if user has voted
   // const [isCheckingVote, setIsCheckingVote] = useState(true); // Track if we are checking vote status
@@ -87,78 +87,78 @@ export default function VotingPage() {
     }
   };
 
-  const handleVote = async (optionName: string) => {
-    try {
-      setMessage("");
-      const response = await fetch("/api/vote", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ option: optionName }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        setMessage(data.message);
-        setCooldownMinutes(null);
-        setResults(data.updatedResults);
-        setHasVoted(true);
-
-        // Update local cache
-        updateLocalCache(true, data.updatedResults);
-        // const cachedData = localStorage.getItem(CACHE_KEY);
-        // if (cachedData) {
-        //   const parsedData = JSON.parse(cachedData);
-        //   parsedData.data.results = data.updatedResults;
-        //   parsedData.data.hasVoted = true;
-        //   localStorage.setItem(CACHE_KEY, JSON.stringify(parsedData));
-        // }
-      } else {
-        setHasVoted(true);
-        setMessage(data.message);
-        if (data.cooldownRemaining) {
-          setCooldownMinutes(data.cooldownRemaining);
-        }
-        // Even if the vote failed due to previous vote, update local cache
-        if (
-          data.message.includes(
-            "A vote has already been cast from this location recently"
-          )
-        ) {
-          updateLocalCache(true, results);
-        }
-      }
-    } catch (error) {
-      setMessage("Error casting vote. Please try again.");
-      console.error("Voting error:", error);
-    }
-  };
-
   // const handleVote = async (optionName: string) => {
   //   try {
   //     setMessage("");
+  //     const response = await fetch("/api/vote", {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify({ option: optionName }),
+  //     });
 
-  //     // Simulate network delay for realism
-  //     await new Promise((resolve) => setTimeout(resolve, 500));
+  //     const data = await response.json();
 
-  //     // Simulate successful vote
-  //     setMessage("Vote recorded successfully");
-  //     setHasVoted(true);
+  //     if (response.ok) {
+  //       setMessage(data.message);
+  //       setCooldownMinutes(null);
+  //       setResults(data.updatedResults);
+  //       setHasVoted(true);
 
-  //     // Update local cache
-  //     const currentResults = [...results];
-  //     const votedOption = currentResults.find((r) => r.option === optionName);
-  //     if (votedOption) {
-  //       votedOption.count++; // Increment count locally for UI feedback
-  //       updateLocalCache(true, currentResults);
+  //       // Update local cache
+  //       updateLocalCache(true, data.updatedResults);
+  //       // const cachedData = localStorage.getItem(CACHE_KEY);
+  //       // if (cachedData) {
+  //       //   const parsedData = JSON.parse(cachedData);
+  //       //   parsedData.data.results = data.updatedResults;
+  //       //   parsedData.data.hasVoted = true;
+  //       //   localStorage.setItem(CACHE_KEY, JSON.stringify(parsedData));
+  //       // }
+  //     } else {
+  //       setHasVoted(true);
+  //       setMessage(data.message);
+  //       if (data.cooldownRemaining) {
+  //         setCooldownMinutes(data.cooldownRemaining);
+  //       }
+  //       // Even if the vote failed due to previous vote, update local cache
+  //       if (
+  //         data.message.includes(
+  //           "A vote has already been cast from this location recently"
+  //         )
+  //       ) {
+  //         updateLocalCache(true, results);
+  //       }
   //     }
   //   } catch (error) {
-  //     // In case of any errors, still treat it as success to maintain appearance
-  //     setMessage("Vote recorded successfully");
-  //     setHasVoted(true);
+  //     setMessage("Error casting vote. Please try again.");
   //     console.error("Voting error:", error);
   //   }
   // };
+
+  const handleVote = async (optionName: string) => {
+    try {
+      setMessage("");
+
+      // Simulate network delay for realism
+      await new Promise((resolve) => setTimeout(resolve, 500));
+
+      // Simulate successful vote
+      setMessage("Vote recorded successfully");
+      setHasVoted(true);
+
+      // Update local cache
+      const currentResults = [...results];
+      const votedOption = currentResults.find((r) => r.option === optionName);
+      if (votedOption) {
+        votedOption.count++; // Increment count locally for UI feedback
+        updateLocalCache(true, currentResults);
+      }
+    } catch (error) {
+      // In case of any errors, still treat it as success to maintain appearance
+      setMessage("Vote recorded successfully");
+      setHasVoted(true);
+      console.error("Voting error:", error);
+    }
+  };
 
   const ResultsContent = () => {
     const sortedResults = [...results].sort((a, b) => b.count - a.count);
@@ -203,9 +203,9 @@ export default function VotingPage() {
     <>
       {message && (
         <p
-          className={`message ${
-          cooldownMinutes !== null ? "cooldown" : "error"
-          }`}
+          //className={`message ${
+          //cooldownMinutes !== null ? "cooldown" : "error"
+          //}`}
         >
           {message}
         </p>
